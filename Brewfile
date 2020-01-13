@@ -93,6 +93,7 @@ brew 'azure-cli'
 
 # Utils
 brew 'asciidoctor' #  Text processor and publishing toolchain for AsciiDoc
+brew 'bat' # Cat on Steriods
 brew 'dnsmasq' # Lightweight DNS forwarder and DHCP server
 brew 'gnu-sed' # GNU implementation of the famous stream editor
 brew 'graphicsmagick' # Image processing tools collection

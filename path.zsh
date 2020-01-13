@@ -1,6 +1,10 @@
 # Add GNU core utilities to beginning
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 
+# Add own Scripts
+export PATH="$HOME/.dotfiles/bin:$PATH"
+
+
 #Kubernetes Helper Configurations
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export KUBE_PS1_SYMBOL_USE_IMG=true
