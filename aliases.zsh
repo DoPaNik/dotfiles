@@ -1,4 +1,4 @@
-alias reload="exec ${SHELL} -l"
+waalias reload="exec ${SHELL} -l"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias c="clear"
 
