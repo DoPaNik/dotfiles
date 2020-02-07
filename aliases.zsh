@@ -8,3 +8,8 @@ alias dopamin="cd $HOME/Documents/DOPAmin"
 alias zshconfig="code $HOME/.zshrc"
 
 weather() { curl -4 wttr.in/${1:-stuttgart} }
+
+alias kubeinfo="kubectl version --short && \
+kubectl get componentstatus && \
+kubectl get nodes && \
+kubectl cluster-info"
