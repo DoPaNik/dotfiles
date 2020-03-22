@@ -7,6 +7,8 @@ export DOTFILES=$HOME/.dotfiles
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+export PATH="/usr/local/sbin:$PATH"
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -49,14 +51,17 @@ DEFAULT_USER=$USER
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$DOTFILES
+ZSH_CUSTOM=$DOTFILES/zsh_custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(helm kubectl terraform docker osx vscode npm Composer zsh-syntax-highlighting thefuck bundler pyenv z)
+plugins=(helm kubectl kube-ps1 kube-ps1-update-patch zsh-syntax-highlighting terraform docker osx vscode npm Composer thefuck bundler pyenv z)
 
 source $ZSH/oh-my-zsh.sh
 
-PS1='$(kube_ps1)'$PS1
+PROMPT='$(kube_ps1)'$PROMPT
+
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)

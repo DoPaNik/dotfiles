@@ -7,8 +7,6 @@ export PATH="$HOME/.dotfiles/bin:$PATH"
 
 #Kubernetes Helper Configurations
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-export KUBE_PS1_SYMBOL_USE_IMG=true
-source "$(brew --prefix)/opt/kube-ps1/share/kube-ps1.sh"
 
 #Magic Navigation Z Configurations
 . $(brew --prefix)/etc/profile.d/z.sh

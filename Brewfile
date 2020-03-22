@@ -18,9 +18,8 @@ brew 'findutils' # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-pref
 brew 'tree' # Display directories as trees
 brew 'watch' # Executes a program periodically, showing output fullscreen
 brew 'wget' #  Internet file retriever
-brew 'zsh-completions' # Additional completion definitions for zsh
 brew 'zsh'
-
+brew 'zsh-completions' # Additional completion definitions for zsh
 
 # Git + GitHub
 brew 'bfg' # Remove large files or passwords from Git history like git-filter-branch -> https://rtyley.github.io/bfg-repo-cleaner/
