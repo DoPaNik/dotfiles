@@ -7,6 +7,10 @@ export PATH="$HOME/.dotfiles/bin:$PATH"
 
 #Kubernetes Helper Configurations
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+#export KUBE_PS1_SYMBOL_USE_IMG=true
+POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(kubecontext context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator command_execution_time time)
 
 #Magic Navigation Z Configurations
 . $(brew --prefix)/etc/profile.d/z.sh

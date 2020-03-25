@@ -25,21 +25,48 @@ if test ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
 
 # # Link Dotfiles to my $HOME
-# ln -s $PWD $HOME/.dotfiles
+DOTFILES="$HOME/.dotfiles"
+if [ ! \( -d "$DOTFILES" \) ];
+then
+  echo "Creating symlink $DOTFILES -> $PWD  "
+  ln -s $PWD $DOTFILES 
+fi
 
 # # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
-if [ -e "$HOME/.zshrc"] then
-  if [ -f "$HOME/.zshrc"] then
-    rm -f $HOME/.zshrc
-  else 
-    unlink $HOME/.zshrc
+ZSHRC="$HOME/.zshrc"
+if [ -e "$ZSHRC" ];
+then
+  if [ -f "$ZSHRC" ];
+  then
+    echo "Deleting $ZSHRC ..."
+    rm -f $ZSHRC
+  else
+    echo "Unlinking $ZSHRC ..."
+    unlink $ZSHRC
   fi
+else
+  echo "$ZSHRC not found"
 fi
-# ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
+echo "Creating symlink $ZSHRC -> $HOME/.dotfiles/.zshrc"
+ln -s $HOME/.dotfiles/.zshrc $ZSHRC
 
 # # Removes .mackup.cfg from $HOME (if it exists) and symlinks the Mackup config file to the home directory
-# rm -rf $HOME/.mackup.cfg
-# ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
+MACKUPCFG="$HOME/.mackup.cfg"
+if [ -e "$MACKUPCFG" ];
+then
+  if [ -f "$MACKUPCFG" ];
+  then
+    echo "Deleting $MACKUPCFG ..."
+    rm -f $MACKUPCFG
+  else
+    echo "Unlinking $ZSHRC ..."
+    unlink $MACKUPCFG
+  fi
+else
+  echo "$MACKUPCFG not found"
+fi
+echo "Creating symlink $MACKUPCFG -> $HOME/.dotfiles/.mackup.cfg"
+ln -s $HOME/.dotfiles/.mackup.cfg $MACKUPCFG
 
 # Set macOS preferences
 # We will run this last because this will reload the shell

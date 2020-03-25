@@ -12,7 +12,8 @@ export PATH="/usr/local/sbin:$PATH"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 DEFAULT_USER=$USER
 
 # Uncomment the following line to use case-sensitive completion.
@@ -60,8 +61,5 @@ ZSH_CUSTOM=$DOTFILES/zsh_custom
 plugins=(helm kubectl kube-ps1 kube-ps1-update-patch zsh-syntax-highlighting terraform docker osx vscode npm Composer thefuck bundler pyenv z)
 
 source $ZSH/oh-my-zsh.sh
-
-PROMPT='$(kube_ps1)'$PROMPT
-
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
