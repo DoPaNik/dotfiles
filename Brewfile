@@ -36,7 +36,8 @@ brew 'dive' # Exploring each Layer in a Image
 
 
 # Terraform 
-brew 'terraform' # Tool to build, change, and version infrastructure
+#brew 'terraform' # Tool to build, change, and version infrastructure
+brew install warrensbox/tap/tfswitch
 
 
 # K8s Stuff
