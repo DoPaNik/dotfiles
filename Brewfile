@@ -1,6 +1,6 @@
 # Taps
 tap 'homebrew/cask'
-tap 'homebrew/cask-eid'
+#tap 'homebrew/cask-eid' #https://github.com/Homebrew/homebrew-cask-eid/commit/4d4470de1ce7f5a2f14bc95f0a9c223d6d8df472
 tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
