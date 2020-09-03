@@ -59,7 +59,7 @@ then
     echo "Deleting $MACKUPCFG ..."
     rm -f $MACKUPCFG
   else
-    echo "Unlinking $ZSHRC ..."
+    echo "Unlinking $MACKUPCFG ..."
     unlink $MACKUPCFG
   fi
 else
@@ -67,6 +67,9 @@ else
 fi
 echo "Creating symlink $MACKUPCFG -> $HOME/.dotfiles/.mackup.cfg"
 ln -s $HOME/.dotfiles/.mackup.cfg $MACKUPCFG
+
+#Setup link for Terminal Theme
+ln -s $HOME/.dotfiles/init $HOME/.dotfiles/init
 
 # Set macOS preferences
 # We will run this last because this will reload the shell
