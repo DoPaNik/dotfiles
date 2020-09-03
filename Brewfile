@@ -29,6 +29,7 @@ brew 'git'
 brew 'grip' # GitHub Markdown previewer
 brew 'hub' # Add GitHub support to git on the command-line
 brew 'travis' # CLI for Travis CI
+brew 'svn'
 
 
 # Docker
@@ -37,7 +38,7 @@ brew 'dive' # Exploring each Layer in a Image
 
 # Terraform 
 #brew 'terraform' # Tool to build, change, and version infrastructure
-brew install warrensbox/tap/tfswitch
+brew 'warrensbox/tap/tfswitch'
 
 
 # K8s Stuff
@@ -150,10 +151,10 @@ cask 'spotify'
 cask 'suspicious-package'
 cask 'texstudio'
 cask 'tor-browser'
-cask 'viscosity'
+#cask 'viscosity' #Always preinstalled
 cask 'visual-studio-code'
 cask 'vlc'
-cask 'zoomus-outlook-plugin'
+#cask 'zoomus-outlook-plugin' #This cask does not run on macOS versions newer than Mojave
 cask 'zoomus'
 cask 'dbeaver-community'
 cask 'mockoon'
