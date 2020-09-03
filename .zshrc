@@ -66,9 +66,3 @@ plugins=(helm kubectl zsh-syntax-highlighting terraform docker osx vscode npm Co
 source $ZSH/oh-my-zsh.sh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/dominikpabst/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dominikpabst/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/dominikpabst/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dominikpabst/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
