@@ -2,3 +2,6 @@
 [submodule "powerlevel9k"]
 	path = zsh_custom/themes/powerlevel9k
 	url = https://github.com/DoPaNik/powerlevel9k.git
+[submodule "zsh-syntax-highlighting"]
+	path = zsh_custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
