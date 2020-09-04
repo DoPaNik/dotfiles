@@ -127,6 +127,8 @@ brew 'sqlmap' # Penetration testing for SQL injection and database servers
 
 
 # Applications
+casl '1password'
+cask '1password-cli'
 cask 'adobe-creative-cloud'
 cask 'aerial'
 cask 'alfred'
