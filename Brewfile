@@ -127,18 +127,20 @@ brew 'sqlmap' # Penetration testing for SQL injection and database servers
 
 
 # Applications
-casl '1password'
+#cask 'viscosity' #Always preinstalled
+#cask 'zoomus-outlook-plugin' #This cask does not run on macOS versions newer than Mojave
 cask '1password-cli'
+cask '1password'
 cask 'adobe-creative-cloud'
 cask 'aerial'
 cask 'alfred'
 cask 'anaconda'
 cask 'bartender'
 cask 'boxcryptor'
-cask 'catlight'
 cask 'cleanmymac'
 cask 'cyberduck'
 cask 'cyberghost-vpn'
+cask 'dbeaver-community'
 cask 'deepl'
 cask 'docker'
 cask 'dropbox'
@@ -146,22 +148,21 @@ cask 'evernote'
 cask 'gemini'
 cask 'hazel'
 cask 'jetbrains-toolbox'
+cask 'mockoon'
+cask 'mysqlworkbench'
 cask 'onedrive'
+cask 'pock'
 cask 'postman'
 cask 'rescuetime'
 cask 'spotify'
 cask 'suspicious-package'
 cask 'texstudio'
 cask 'tor-browser'
-#cask 'viscosity' #Always preinstalled
+cask 'virtualbox-extension-pack'
+cask 'virtualbox'
 cask 'visual-studio-code'
 cask 'vlc'
-#cask 'zoomus-outlook-plugin' #This cask does not run on macOS versions newer than Mojave
 cask 'zoomus'
-cask 'dbeaver-community'
-cask 'mockoon'
-cask 'pock'
-cask 'mysqlworkbench'
 
 
 # Quicklook
