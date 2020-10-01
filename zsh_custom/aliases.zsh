@@ -1,6 +1,7 @@
 alias reload="exec ${SHELL} -l"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias c="clear"
+alias g="git"
 
 alias nt="cd $HOME/Documents/Novatec"
 alias bit="cd $HOME/Documents/BrainActivIT"
