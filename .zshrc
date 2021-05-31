@@ -71,3 +71,6 @@ source $ZSH/oh-my-zsh.sh
 HOME=${HOME:-'/Users/dpb'}
 export PATH="$HOME/"'.platformsh/bin':"$PATH"
 if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
+
+if [ -e /Users/dpb/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/dpb/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
