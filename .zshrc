@@ -74,3 +74,6 @@ if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/she
 
 if [ -e /Users/dpb/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/dpb/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/dpb/.sdkman"
+[[ -s "/Users/dpb/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/dpb/.sdkman/bin/sdkman-init.sh"
