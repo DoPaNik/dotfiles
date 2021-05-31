@@ -105,6 +105,7 @@ brew 'mackup' # Keep your Mac's application settings in sync
 brew 'make' # Utility for directing compilation
 brew 'mkcert' # Simple tool to make locally trusted development certificates
 brew 'mtr' # 'traceroute' and 'ping' in a single tool
+brew 'nss' # Network Security Services from Moz://a
 brew 'ocrmypdf' # Adds an OCR text layer to scanned PDF files
 brew 'rename' # Perl-powered file rename script with many helpful built-ins
 brew 'shunit2' # xUnit unit testing framework for Bourne-based shell scripts
