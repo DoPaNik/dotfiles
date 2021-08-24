@@ -32,9 +32,9 @@ brew 'travis' # CLI for Travis CI
 brew 'svn'
 
 
-# Docker
+# Container
 brew 'dive' # Exploring each Layer in a Image
-
+brew 'podman' #Daemonless container engine for developing, managing, and running OCI Containers 
 
 # Terraform 
 #brew 'terraform' # Tool to build, change, and version infrastructure
@@ -45,8 +45,8 @@ brew 'warrensbox/tap/tfswitch'
 brew 'helm' # Kubernetes package manager
 brew 'k9s' # Kubernetes CLI To Manage Your Clusters In Style
 brew 'krew' # Package manager for kubectl plugins
-brew 'kubectx' # Tool that can switch between kubectl contexts easily and create aliases
 brew 'kubernetes-cli' # Kubernetes cli - also known as: kubectl
+brew 'kubectx' # Tool that can switch between kubectl contexts easily and create aliases
 brew 'kube-ps1' # Kubernetes prompt info for bash and zsh
 brew 'popeye' # A Kubernetes Cluster Sanitizer
 brew 'stern' # Tail multiple Kubernetes pods & their containers
@@ -145,12 +145,12 @@ cask 'dbeaver-community'
 cask 'deepl'
 cask 'docker'
 cask 'dropbox'
-cask 'evernote'
 cask 'gemini'
 cask 'hazel'
 cask 'jetbrains-toolbox'
 cask 'mockoon'
 cask 'mysqlworkbench'
+cask 'notion'
 cask 'onedrive'
 cask 'pock'
 cask 'postman'
@@ -163,7 +163,7 @@ cask 'virtualbox-extension-pack'
 cask 'virtualbox'
 cask 'visual-studio-code'
 cask 'vlc'
-cask 'zoomus'
+cask 'zoom'
 
 
 # Quicklook
@@ -178,7 +178,7 @@ cask 'qlstephen' # QuickLook plugin that lets you view plain text files without 
 cask 'font-lato'
 cask 'font-open-sans'
 cask 'font-roboto'
-cask 'font-roboto-condensed'
+#cask 'font-roboto-condensed' #https://github.com/Homebrew/homebrew-cask-fonts
 cask 'font-source-code-pro-for-powerline'
 cask 'font-source-code-pro'
 cask 'font-source-sans-pro'
