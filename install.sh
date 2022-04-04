@@ -74,7 +74,16 @@ else
   echo "$MACKUPCFG not found"
 fi
 echo "Creating symlink $MACKUPCFG -> $HOME/.dotfiles/.mackup.cfg"
-ln -s $HOME/.dotfiles/.mackup.cfg $MACKUPCFG
+ln --symbolic $HOME/.dotfiles/.mackup.cfg $MACKUPCFG
+
+# Simplify opw agent path
+AGENT_DIR="$HOME/.1password"
+AGENT="$AGENT_DIR/agent.sock"
+if [ ! -L $AGENT ]; then
+  mkdir --parents $AGENT_DIR
+  echo "Creating symlink to 1password agent socket "
+  ln --symbolic $HOME/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock $AGENT
+fi
 
 #Setup link for Terminal Theme
 if [ ! -L "$HOME/init" ]; then
