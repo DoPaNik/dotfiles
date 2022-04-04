@@ -20,8 +20,16 @@ if test ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh"; then
 fi
 
 # Install Zsh-Syntay-Hightligting Custom Plugin
-if test ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"; then
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+ZSH_SYNTAX_HIGHLIGHTING_DIR="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
+if [ -d "$ZSH_SYNTAX_HIGHLIGHTING_DIR" ]; then
+  if [ -z "$(ls -A $ZSH_SYNTAX_HIGHLIGHTING_DIR)" ]; then
+    echo "Empty"
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  else
+    echo "Not Empty"
+    cd $ZSH_SYNTAX_HIGHLIGHTING_DIR && git pull
+  fi
+
 fi
 
 # # Link Dotfiles to my $HOME
@@ -29,7 +37,7 @@ DOTFILES="$HOME/.dotfiles"
 if [ ! \( -d "$DOTFILES" \) ];
 then
   echo "Creating symlink $DOTFILES -> $PWD  "
-  ln -s $PWD $DOTFILES 
+  ln --symbolic $PWD $DOTFILES
 fi
 
 # # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
@@ -39,7 +47,7 @@ then
   if [ -f "$ZSHRC" ];
   then
     echo "Deleting $ZSHRC ..."
-    rm -f $ZSHRC
+    rm --force $ZSHRC
   else
     echo "Unlinking $ZSHRC ..."
     unlink $ZSHRC
@@ -48,7 +56,7 @@ else
   echo "$ZSHRC not found"
 fi
 echo "Creating symlink $ZSHRC -> $HOME/.dotfiles/.zshrc"
-ln -s $HOME/.dotfiles/.zshrc $ZSHRC
+ln --symbolic $HOME/.dotfiles/.zshrc $ZSHRC
 
 # # Removes .mackup.cfg from $HOME (if it exists) and symlinks the Mackup config file to the home directory
 MACKUPCFG="$HOME/.mackup.cfg"
@@ -57,7 +65,7 @@ then
   if [ -f "$MACKUPCFG" ];
   then
     echo "Deleting $MACKUPCFG ..."
-    rm -f $MACKUPCFG
+    rm --force $MACKUPCFG
   else
     echo "Unlinking $MACKUPCFG ..."
     unlink $MACKUPCFG
@@ -69,7 +77,9 @@ echo "Creating symlink $MACKUPCFG -> $HOME/.dotfiles/.mackup.cfg"
 ln -s $HOME/.dotfiles/.mackup.cfg $MACKUPCFG
 
 #Setup link for Terminal Theme
-ln -s $HOME/.dotfiles/init $HOME/.dotfiles/init
+if [ ! -L "$HOME/init" ]; then
+  ln --symbolic $HOME/.dotfiles/init $HOME/init
+fi
 
 # Set macOS preferences
 # We will run this last because this will reload the shell
