@@ -4,7 +4,7 @@ tap 'homebrew/cask'
 tap 'homebrew/cask-fonts'
 tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
-tap 'drud/ddev' 
+tap 'drud/ddev'
 tap 'derailed/k9s'
 tap 'derailed/popeye'
 
@@ -15,6 +15,8 @@ cask_args appdir: '/Applications'
 brew 'bash' # Update outdated version for OSX
 brew 'coreutils' # GNU File, Shell, and Text utilities
 brew 'findutils' # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
+brew 'lsd' # Clone of ls with colorful output, file type icons, and more
+brew 'exa' # Modern replacement for 'ls'
 brew 'tree' # Display directories as trees
 brew 'watch' # Executes a program periodically, showing output fullscreen
 brew 'wget' #  Internet file retriever
@@ -34,9 +36,9 @@ brew 'svn'
 
 # Container
 brew 'dive' # Exploring each Layer in a Image
-brew 'podman' #Daemonless container engine for developing, managing, and running OCI Containers 
+brew 'podman' #Daemonless container engine for developing, managing, and running OCI Containers
 
-# Terraform 
+# Terraform
 #brew 'terraform' # Tool to build, change, and version infrastructure
 brew 'warrensbox/tap/tfswitch'
 
@@ -79,11 +81,11 @@ brew 'ruby'
 brew 'rbenv' # Ruby version manager
 
 
-# Node.js 
+# Node.js
 brew 'node'
 
 
-# AWS 
+# AWS
 brew 'awscli'
 brew 'aws-elasticbeanstalk'
 
@@ -113,9 +115,10 @@ brew 'telnet' # User interface to the TELNET protocol
 brew 'thefuck' # Programatically correct mistyped console commands
 brew 'tmux' # Terminal multiplexer
 brew 'z' # Magic navigation z - jump around
+brew 'fzf' # Fuzzy search
 
 
-# CTF 
+# CTF
 # brew 'knock' # Unlock your Mac from yoir wrist with just a tap | DEPRECATED
 brew 'aircrack-ng' # Next-generation aircrack with lots of new features
 brew 'binutils' # GNU binary tools for native development
@@ -125,7 +128,6 @@ brew 'hydra' # Network logon cracker which supports many services
 brew 'john' # Featureful UNIX password cracker
 brew 'nmap' # Port scanning utility for large networks
 brew 'sqlmap' # Penetration testing for SQL injection and database servers
-
 
 # Applications
 #cask 'viscosity' #Always preinstalled
@@ -137,7 +139,6 @@ cask 'aerial'
 cask 'alfred'
 cask 'anaconda'
 cask 'bartender'
-cask 'boxcryptor'
 cask 'cleanmymac'
 cask 'cyberduck'
 cask 'cyberghost-vpn'
@@ -149,7 +150,6 @@ cask 'gemini'
 cask 'hazel'
 cask 'jetbrains-toolbox'
 cask 'mockoon'
-cask 'mysqlworkbench'
 cask 'notion'
 cask 'onedrive'
 cask 'pock'
@@ -159,6 +159,7 @@ cask 'spotify'
 cask 'suspicious-package'
 cask 'texstudio'
 cask 'tor-browser'
+cask 'vagrant' # Development Environments Made Easy
 cask 'virtualbox-extension-pack'
 cask 'virtualbox'
 cask 'visual-studio-code'
