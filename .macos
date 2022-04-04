@@ -204,7 +204,7 @@ sudo pmset -b sleep 20
 sudo pmset -a standbydelay 86400
 
 # Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off > /dev/null
+sudo systemsetup -setsleep Off > /dev/null
 
 # Remove the sleep image file to save disk space
 #sudo rm /private/var/vm/sleepimage
