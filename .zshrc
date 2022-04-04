@@ -7,7 +7,11 @@ export DOTFILES=$HOME/.dotfiles
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# Extending path settings
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/sbin:$PATH"
+
+export SSH_AUTH_SOCK=$HOME/.1password/agent.sock
 
 export LDFLAGS="-L/usr/local/opt/libpq/lib"
 export PKG_CONFIG_PATH="/usr/local/opt/libpq/lib/pkgconfig"
@@ -67,13 +71,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 
-# BEGIN SNIPPET: Platform.sh CLI configuration
-HOME=${HOME:-'/Users/dpb'}
-export PATH="$HOME/"'.platformsh/bin':"$PATH"
-if [ -f "$HOME/"'.platformsh/shell-config.rc' ]; then . "$HOME/"'.platformsh/shell-config.rc'; fi # END SNIPPET
-
-if [ -e /Users/dpb/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/dpb/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/dpb/.sdkman"
-[[ -s "/Users/dpb/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/dpb/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
