@@ -65,7 +65,7 @@ ZSH_CUSTOM=$DOTFILES/zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(helm kubectl zsh-syntax-highlighting terraform docker osx vscode npm Composer thefuck bundler pyenv z)
+plugins=(helm kubectl zsh-syntax-highlighting terraform docker macos vscode npm Composer thefuck bundler pyenv z)
 
 source $ZSH/oh-my-zsh.sh
 
