@@ -37,7 +37,7 @@ DOTFILES="$HOME/.dotfiles"
 if [ ! \( -d "$DOTFILES" \) ];
 then
   echo "Creating symlink $DOTFILES -> $PWD  "
-  ln --symbolic $PWD $DOTFILES
+  ln -s $PWD $DOTFILES
 fi
 
 # # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
@@ -47,7 +47,7 @@ then
   if [ -f "$ZSHRC" ];
   then
     echo "Deleting $ZSHRC ..."
-    rm --force $ZSHRC
+    rm -f $ZSHRC
   else
     echo "Unlinking $ZSHRC ..."
     unlink $ZSHRC
@@ -56,7 +56,7 @@ else
   echo "$ZSHRC not found"
 fi
 echo "Creating symlink $ZSHRC -> $HOME/.dotfiles/.zshrc"
-ln --symbolic $HOME/.dotfiles/.zshrc $ZSHRC
+ln -s $HOME/.dotfiles/.zshrc $ZSHRC
 
 # # Removes .mackup.cfg from $HOME (if it exists) and symlinks the Mackup config file to the home directory
 MACKUPCFG="$HOME/.mackup.cfg"
@@ -65,7 +65,7 @@ then
   if [ -f "$MACKUPCFG" ];
   then
     echo "Deleting $MACKUPCFG ..."
-    rm --force $MACKUPCFG
+    rm -f $MACKUPCFG
   else
     echo "Unlinking $MACKUPCFG ..."
     unlink $MACKUPCFG
@@ -74,22 +74,22 @@ else
   echo "$MACKUPCFG not found"
 fi
 echo "Creating symlink $MACKUPCFG -> $HOME/.dotfiles/.mackup.cfg"
-ln --symbolic $HOME/.dotfiles/.mackup.cfg $MACKUPCFG
+ln -s $HOME/.dotfiles/.mackup.cfg $MACKUPCFG
 
 # Simplify opw agent path
 AGENT_DIR="$HOME/.1password"
 AGENT="$AGENT_DIR/agent.sock"
 if [ ! -L $AGENT ]; then
-  mkdir --parents $AGENT_DIR
+  mkdir -p $AGENT_DIR
   echo "Creating symlink to 1password agent socket "
-  ln --symbolic $HOME/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock $AGENT
+  ln -s $HOME/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock $AGENT
 fi
 
 #Setup link for Terminal Theme
 if [ ! -L "$HOME/init" ]; then
-  ln --symbolic $HOME/.dotfiles/init $HOME/init
+  ln -s $HOME/.dotfiles/init $HOME/init
 fi
 
 # Set macOS preferences
 # We will run this last because this will reload the shell
-source .macos
+#source .macos
