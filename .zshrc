@@ -10,7 +10,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Extending path settings
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/sbin:$PATH"
-
+export PATH="/Users/dpb/.rd/bin:$PATH"
 export SSH_AUTH_SOCK=$HOME/.1password/agent.sock
 
 export LDFLAGS="-L/usr/local/opt/libpq/lib"
@@ -74,3 +74,5 @@ source $ZSH/oh-my-zsh.sh
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
