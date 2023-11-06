@@ -40,7 +40,7 @@ brew 'podman' #Daemonless container engine for developing, managing, and running
 
 # Terraform
 #brew 'terraform' # Tool to build, change, and version infrastructure
-brew 'warrensbox/tap/tfswitch'
+#brew 'warrensbox/tap/tfswitch'
 
 
 # K8s Stuff
@@ -120,39 +120,39 @@ brew 'fzf' # Fuzzy search
 
 # CTF
 # brew 'knock' # Unlock your Mac from yoir wrist with just a tap | DEPRECATED
-brew 'aircrack-ng' # Next-generation aircrack with lots of new features
-brew 'binutils' # GNU binary tools for native development
-brew 'dns2tcp' # TCP over DNS tunnel
-brew 'fcrackzip' # Zip password cracker
-brew 'hydra' # Network logon cracker which supports many services
-brew 'john' # Featureful UNIX password cracker
-brew 'nmap' # Port scanning utility for large networks
-brew 'sqlmap' # Penetration testing for SQL injection and database servers
+#brew 'aircrack-ng' # Next-generation aircrack with lots of new features
+#brew 'binutils' # GNU binary tools for native development
+#brew 'dns2tcp' # TCP over DNS tunnel
+#brew 'fcrackzip' # Zip password cracker
+#brew 'hydra' # Network logon cracker which supports many services
+#brew 'john' # Featureful UNIX password cracker
+#brew 'nmap' # Port scanning utility for large networks
+#brew 'sqlmap' # Penetration testing for SQL injection and database servers
 
 # Applications
 #cask 'viscosity' #Always preinstalled
 #cask 'zoomus-outlook-plugin' #This cask does not run on macOS versions newer than Mojave
 cask '1password-cli'
-cask '1password'
+#cask '1password'
 cask 'adobe-creative-cloud'
-cask 'aerial'
+#cask 'aerial'
 cask 'alfred'
 cask 'anaconda'
 cask 'bartender'
-cask 'cleanmymac'
+#cask 'cleanmymac'
 cask 'cyberduck'
 cask 'cyberghost-vpn'
 cask 'dbeaver-community'
 cask 'deepl'
-cask 'docker'
+#cask 'docker'
 cask 'dropbox'
-cask 'gemini'
+#cask 'gemini'
 cask 'hazel'
 cask 'jetbrains-toolbox'
 cask 'mockoon'
 cask 'notion'
-cask 'onedrive'
-cask 'pock'
+#cask 'onedrive'
+#cask 'pock'
 cask 'postman'
 cask 'rescuetime'
 cask 'spotify'
@@ -160,26 +160,26 @@ cask 'suspicious-package'
 cask 'texstudio'
 cask 'tor-browser'
 cask 'vagrant' # Development Environments Made Easy
-cask 'virtualbox-extension-pack'
-cask 'virtualbox'
+#cask 'virtualbox-extension-pack'
+#cask 'virtualbox'
 cask 'visual-studio-code'
 cask 'vlc'
 cask 'zoom'
 
 
 # Quicklook
-cask 'qlcolorcode' # QLColorCode Quick Look plugin for source code with syntax highlighting
-cask 'qlmarkdown' # QuickLook generator for Markdown files
-cask 'quicklook-json' # QuickLook-Json is a useful Quick Look plugin to preview JSON files
-cask 'quicklook-csv' # QuickLook plugin for CSV files
-cask 'qlstephen' # QuickLook plugin that lets you view plain text files without a file extension
+#cask 'qlcolorcode' # QLColorCode Quick Look plugin for source code with syntax highlighting
+#cask 'qlmarkdown' # QuickLook generator for Markdown files
+#cask 'quicklook-json' # QuickLook-Json is a useful Quick Look plugin to preview JSON files
+#cask 'quicklook-csv' # QuickLook plugin for CSV files
+#cask 'qlstephen' # QuickLook plugin that lets you view plain text files without a file extension
 
 
 # Fonts
 cask 'font-lato'
 cask 'font-open-sans'
 cask 'font-roboto'
-#cask 'font-roboto-condensed' #https://github.com/Homebrew/homebrew-cask-fonts
+cask 'font-roboto-condensed' #https://github.com/Homebrew/homebrew-cask-fonts
 cask 'font-source-code-pro-for-powerline'
 cask 'font-source-code-pro'
 cask 'font-source-sans-pro'
