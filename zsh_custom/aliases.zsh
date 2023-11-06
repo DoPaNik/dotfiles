@@ -34,9 +34,9 @@ alias reload="exec ${SHELL} -l"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias c="clear"
 
-alias nt="cd $HOME/Documents/Novatec"
-alias bit="cd $HOME/Documents/BrainActivIT"
-alias dopamin="cd $HOME/Documents/DOPAmin"
+alias nt="cd $HOME/Documents/business/Novatec"
+alias bit="cd $HOME/Documents/business/BrainActivIT"
+alias dopamin="cd $HOME/Documents/business/DOPAmin"
 alias zshconfig="code $HOME/.zshrc"
 
 alias pl="pulumi"
@@ -48,7 +48,7 @@ kubectl get componentstatus && \
 kubectl get nodes && \
 kubectl cluster-info"
 
-alias asp="source ~/.azure_sp/sp" 
+alias asp="source ~/.azure_sp/sp"
 
 find() {
 	if [ $# = 1 ]
