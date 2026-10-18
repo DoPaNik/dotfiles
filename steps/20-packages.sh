@@ -10,6 +10,19 @@ fi
 
 BREWFILE="$DOTFILES_DIR/Brewfile"
 
+# Homebrew only loads formulae from third-party taps that are trusted
+trusted=$(brew trust --json=v1 2>/dev/null || true)
+# shellcheck disable=SC2013 # tap names contain no spaces
+for tap in $(sed -n "s/^tap '\([^']*\)'.*/\1/p" "$BREWFILE"); do
+  if printf '%s' "$trusted" | grep -q "\"$tap\""; then
+    unchanged "trusted tap $tap"
+  else
+    run brew trust --tap "$tap"
+    changed "trusted tap $tap"
+  fi
+done
+unset trusted tap
+
 if brew bundle check --file="$BREWFILE" --no-upgrade >/dev/null 2>&1; then
   unchanged "all Brewfile entries installed"
 else

@@ -77,11 +77,11 @@ set_pref_path $F com.apple.finder FXInfoPanesExpanded.OpenWith bool true
 set_pref_path $F com.apple.finder FXInfoPanesExpanded.Privileges bool true
 
 # Show the ~/Library folder
-if ls -lOd "$HOME/Library" | grep -q hidden; then
+if stat -f %Sf "$HOME/Library" | grep -q hidden; then
   run chflags nohidden "$HOME/Library"
-  changed "~/Library visible"
+  changed "$HOME/Library visible"
 else
-  unchanged "~/Library visible"
+  unchanged "$HOME/Library visible"
 fi
 
 unset F

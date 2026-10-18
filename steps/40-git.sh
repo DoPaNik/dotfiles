@@ -7,9 +7,9 @@ link_file "$DOTFILES_DIR/home/.gitconfig" "$HOME/.gitconfig"
 link_file "$DOTFILES_DIR/home/.config/git/ignore" "$HOME/.config/git/ignore"
 
 if [ -f "$HOME/.gitconfig.local" ]; then
-  unchanged "~/.gitconfig.local"
+  unchanged "$HOME/.gitconfig.local"
 else
-  skipped "~/.gitconfig.local missing, create it with your identity:"
+  skipped "$HOME/.gitconfig.local missing, create it with your identity:"
   info "  git config --file ~/.gitconfig.local user.name  \"Your Name\""
   info "  git config --file ~/.gitconfig.local user.email \"you@example.com\""
 fi

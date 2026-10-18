@@ -4,5 +4,5 @@
 section "System settings (sudo)"
 
 require_sudo
-# shellcheck source=../macos/system.sh
+# shellcheck source=/dev/null
 . "$DOTFILES_DIR/macos/system.sh"

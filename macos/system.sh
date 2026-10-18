@@ -46,7 +46,7 @@ else
 fi
 
 # Show the /Volumes folder
-if ls -lOd /Volumes | grep -q hidden; then
+if stat -f %Sf /Volumes | grep -q hidden; then
   run sudo chflags nohidden /Volumes
   changed "/Volumes visible"
 else

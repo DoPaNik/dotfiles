@@ -7,7 +7,7 @@
 #   ./install.sh --dry-run       show what would change, change nothing
 #   ./install.sh --list          list the steps
 
-set -euo pipefail
+set -Eeuo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export DOTFILES_DIR

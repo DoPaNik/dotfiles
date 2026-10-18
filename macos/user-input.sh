@@ -21,5 +21,6 @@ set_default_array NSGlobalDomain AppleLanguages "en-DE" "de-DE"
 set_default NSGlobalDomain AppleLocale string "en_DE"
 set_default NSGlobalDomain AppleMeasurementUnits string "Centimeters"
 set_default NSGlobalDomain AppleMetricUnits bool true
+# shellcheck disable=SC2034 # read by summary() in lib/common.sh
 [ "$COUNT_CHANGED" -gt "$before" ] && NEEDS_LOGOUT=1
 unset before
