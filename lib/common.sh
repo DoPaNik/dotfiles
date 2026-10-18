@@ -173,7 +173,8 @@ set_default_array() {
   for v in "$@"; do wanted="$wanted\"$v\","; done
   wanted="${wanted%,}]"
   current=$(defaults export "$domain" - 2>/dev/null | plutil -extract "$key" json -o - - 2>/dev/null) || current=""
-  if [ "$current" = "$wanted" ]; then
+  # Some apps (e.g. the Dock) drop an empty array on restart: unset = empty
+  if [ "$current" = "$wanted" ] || { [ -z "$current" ] && [ "$wanted" = "[]" ]; }; then
     unchanged "$domain $key"
     return 0
   fi
