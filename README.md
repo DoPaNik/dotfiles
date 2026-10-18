@@ -45,7 +45,12 @@ Brewfile          packages, apps and fonts
 
 ## Manual steps
 
+- Run `./install.sh` from iTerm2 and give it two permissions first
+  (*System Settings → Privacy & Security*), then restart iTerm2:
+  - *App Management*: needed to adopt apps that were installed by hand
+  - *Full Disk Access*: needed by `systemsetup` in the `system` step
 - Git identity: `~/.gitconfig.local` with `user.name` and `user.email`
-- iTerm2: set the font to *Hack Nerd Font*
-- Give iTerm2 *Full Disk Access* before running the `system` step
+- Log out and in again after the first run: language, keyboard repeat and
+  the new fonts only take effect then
+- iTerm2: set the font to *Hack Nerd Font Mono*
 - Machine specific shell settings go into `~/.zshrc.local`
