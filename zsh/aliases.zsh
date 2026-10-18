@@ -1,10 +1,8 @@
 # --------------------------------- ALIASES -----------------------------------
-#alias ..='cd ..'
 alias cp='cp -v'
 alias rm='rm -I'
 alias mv='mv -iv'
 alias ln='ln -sriv'
-alias xclip='xclip -selection c'
 command -v vim > /dev/null && alias vi='vim'
 
 ### Colorize commands
@@ -16,8 +14,6 @@ alias la='ls -A'
 alias l='ls -F'
 command -v lsd > /dev/null && alias ls='lsd --group-dirs first' && \
 	alias tree='lsd --tree'
-command -v colorls > /dev/null && alias ls='colorls --sd --gs' && \
-	alias tree='colorls --tree'
 
 ### CAT & LESS
 command -v bat > /dev/null && \
@@ -34,21 +30,9 @@ alias reload="exec ${SHELL} -l"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias c="clear"
 
-alias nt="cd $HOME/Documents/business/Novatec"
 alias bit="cd $HOME/Documents/business/BrainActivIT"
 alias dopamin="cd $HOME/Documents/business/DOPAmin"
-alias zshconfig="code $HOME/.zshrc"
-
-alias pl="pulumi"
-
-weather() { curl -4 wttr.in/${1:-stuttgart} }
-
-alias kubeinfo="kubectl version --short && \
-kubectl get componentstatus && \
-kubectl get nodes && \
-kubectl cluster-info"
-
-alias asp="source ~/.azure_sp/sp"
+alias zshconfig="code $DOTFILES"
 
 find() {
 	if [ $# = 1 ]

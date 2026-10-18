@@ -1,95 +1,69 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# Provision a Mac from this repository. Safe to run repeatedly: every step
+# checks the current state first and only changes what differs.
+#
+#   ./install.sh                 run all steps
+#   ./install.sh shell git       run selected steps only
+#   ./install.sh --dry-run       show what would change, change nothing
+#   ./install.sh --list          list the steps
 
-echo "Setting up your Mac..."
+set -euo pipefail
 
-# Check for Homebrew and install if we don't have it
-if test ! $(which brew); then
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export DOTFILES_DIR
+
+# shellcheck source=lib/common.sh
+. "$DOTFILES_DIR/lib/common.sh"
+
+ALL_STEPS="preflight homebrew packages shell git mise macos system"
+
+usage() {
+  sed -n '2,9p' "$0" | sed 's/^# \{0,1\}//'
+}
+
+list_steps() {
+  local s file desc
+  for s in $ALL_STEPS; do
+    file=$(ls "$DOTFILES_DIR"/steps/*-"$s".sh)
+    desc=$(sed -n '2s/^# //p' "$file")
+    printf '  %-10s %s\n' "$s" "$desc"
+  done
+}
+
+steps=""
+while [ $# -gt 0 ]; do
+  case $1 in
+    -n|--dry-run) DRY_RUN=1 ;;
+    -l|--list) list_steps; exit 0 ;;
+    -h|--help) usage; exit 0 ;;
+    -*) die "unknown option: $1" ;;
+    *)
+      case " $ALL_STEPS " in
+        *" $1 "*) steps="$steps $1" ;;
+        *) die "unknown step: $1 (see --list)" ;;
+      esac ;;
+  esac
+  shift
+done
+steps=${steps:-$ALL_STEPS}
+
+[ "$(id -u)" -ne 0 ] || die "do not run as root; steps ask for sudo themselves"
+
+# Make Homebrew available for every step, even on the very first run
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# Update Homebrew recipes
-brew update
+current_step=""
+trap '[ -n "$current_step" ] && error "step \"$current_step\" failed"' ERR
 
-# Install all our dependencies with bundle (See Brewfile)
-brew tap homebrew/bundle
-brew bundle
+[ "$DRY_RUN" = 1 ] && warn "dry-run: nothing will be changed"
 
-# Install "Oh My Zsh"
-if test ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh"; then
-  sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
+for step in $steps; do
+  current_step=$step
+  # shellcheck source=/dev/null
+  . "$(ls "$DOTFILES_DIR"/steps/*-"$step".sh)"
+done
+current_step=""
 
-# Install Zsh-Syntay-Hightligting Custom Plugin
-ZSH_SYNTAX_HIGHLIGHTING_DIR="${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting"
-if [ -d "$ZSH_SYNTAX_HIGHLIGHTING_DIR" ]; then
-  if [ -z "$(ls -A $ZSH_SYNTAX_HIGHLIGHTING_DIR)" ]; then
-    echo "Empty"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  else
-    echo "Not Empty"
-    cd $ZSH_SYNTAX_HIGHLIGHTING_DIR && git pull
-  fi
-
-fi
-
-# # Link Dotfiles to my $HOME
-DOTFILES="$HOME/.dotfiles"
-if [ ! \( -d "$DOTFILES" \) ];
-then
-  echo "Creating symlink $DOTFILES -> $PWD  "
-  ln -s $PWD $DOTFILES
-fi
-
-# # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
-ZSHRC="$HOME/.zshrc"
-if [ -e "$ZSHRC" ];
-then
-  if [ -f "$ZSHRC" ];
-  then
-    echo "Deleting $ZSHRC ..."
-    rm -f $ZSHRC
-  else
-    echo "Unlinking $ZSHRC ..."
-    unlink $ZSHRC
-  fi
-else
-  echo "$ZSHRC not found"
-fi
-echo "Creating symlink $ZSHRC -> $HOME/.dotfiles/.zshrc"
-ln -s $HOME/.dotfiles/.zshrc $ZSHRC
-
-# # Removes .mackup.cfg from $HOME (if it exists) and symlinks the Mackup config file to the home directory
-MACKUPCFG="$HOME/.mackup.cfg"
-if [ -e "$MACKUPCFG" ];
-then
-  if [ -f "$MACKUPCFG" ];
-  then
-    echo "Deleting $MACKUPCFG ..."
-    rm -f $MACKUPCFG
-  else
-    echo "Unlinking $MACKUPCFG ..."
-    unlink $MACKUPCFG
-  fi
-else
-  echo "$MACKUPCFG not found"
-fi
-echo "Creating symlink $MACKUPCFG -> $HOME/.dotfiles/.mackup.cfg"
-ln -s $HOME/.dotfiles/.mackup.cfg $MACKUPCFG
-
-# Simplify opw agent path
-AGENT_DIR="$HOME/.1password"
-AGENT="$AGENT_DIR/agent.sock"
-if [ ! -L $AGENT ]; then
-  mkdir -p $AGENT_DIR
-  echo "Creating symlink to 1password agent socket "
-  ln -s $HOME/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock $AGENT
-fi
-
-#Setup link for Terminal Theme
-if [ ! -L "$HOME/init" ]; then
-  ln -s $HOME/.dotfiles/init $HOME/init
-fi
-
-# Set macOS preferences
-# We will run this last because this will reload the shell
-#source .macos
+summary
