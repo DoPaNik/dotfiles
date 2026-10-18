@@ -19,3 +19,15 @@ if id -Gn | tr ' ' '\n' | grep -qx admin; then
 else
   die "user $(id -un) is not an administrator"
 fi
+
+# The system step uses systemsetup, which needs Full Disk Access for the
+# terminal. The TCC database is only readable with that permission.
+case " ${steps:-} " in
+  *" system "*)
+    if head -c1 "/Library/Application Support/com.apple.TCC/TCC.db" >/dev/null 2>&1; then
+      unchanged "terminal has Full Disk Access"
+    else
+      warn "terminal has no Full Disk Access: some system settings will be skipped."
+      warn "Grant it in System Settings > Privacy & Security > Full Disk Access, then restart the terminal."
+    fi ;;
+esac

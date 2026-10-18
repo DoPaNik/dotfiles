@@ -15,6 +15,7 @@ cd ~/Documents/Github/dotfiles
 ./install.sh --dry-run      # show what would change
 ./install.sh                # run all steps
 ./install.sh shell git      # run selected steps
+./install.sh update         # upgrade packages, runtimes and Oh My Zsh
 ./install.sh --list         # list steps
 ```
 
@@ -28,13 +29,22 @@ cd ~/Documents/Github/dotfiles
 | `mise` | links `~/.config/mise/config.toml`, installs Python and Node.js |
 | `macos` | user settings from `macos/user-*.sh`, restarts only changed apps |
 | `system` | system settings from `macos/system.sh` (sudo) |
+| `update` | `brew upgrade`, `mise upgrade`, Oh My Zsh update; only runs when named |
 
 Files that are replaced by a link are moved to `~/.dotfiles-backup/<timestamp>/`.
+
+## CI
+
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs on every push, pull
+request and weekly: `shellcheck`, [`bin/check-brewfile`](bin/check-brewfile)
+(fails when a formula or cask was renamed, removed or disabled) and
+`./install.sh --dry-run` on a macOS runner.
 
 ## Layout
 
 ```
 install.sh        entry point
+bin/              helper scripts (check-brewfile)
 lib/common.sh     helpers: link_file, set_default, set_pref_path, set_pmset, dry-run
 steps/            one file per step
 macos/            macOS settings, split by area
