@@ -17,7 +17,7 @@ set_default --sudo /Library/Preferences/com.apple.loginwindow AdminHostInfo stri
 set_default --sudo /Library/Preferences/com.apple.loginwindow showInputMenu bool true
 
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-if [ "$(sudo -n systemsetup -gettimezone 2>/dev/null | awk -F': ' '{print $2}')" = "Europe/Berlin" ]; then
+if [ "$(readlink /etc/localtime)" = "/var/db/timezone/zoneinfo/Europe/Berlin" ]; then
   unchanged "timezone Europe/Berlin"
 elif run sudo systemsetup -settimezone "Europe/Berlin" >/dev/null; then
   changed "timezone -> Europe/Berlin"

@@ -9,6 +9,10 @@
 
 set -euo pipefail
 
+# The scripts use BSD flags (stat -f, mktemp -t). Put the system tools first,
+# even if the calling shell prefers GNU coreutils (see zsh/tools.zsh).
+PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export DOTFILES_DIR
 
