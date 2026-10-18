@@ -10,9 +10,10 @@ set_default $F com.apple.finder QuitMenuItem bool true
 # Finder: disable window animations and Get Info animations
 set_default $F com.apple.finder DisableAllAnimations bool true
 
-# Set Desktop as the default location for new Finder windows
-set_default $F com.apple.finder NewWindowTarget string "PfDe"
-set_default $F com.apple.finder NewWindowTargetPath string "file://${HOME}/Desktop/"
+# Set Home as the default location for new Finder windows
+# For other paths, use `PfLo` and `file:///full/path/here/`
+set_default $F com.apple.finder NewWindowTarget string "PfHm"
+set_default $F com.apple.finder NewWindowTargetPath string "file://${HOME}/"
 
 # Show icons for hard drives, servers, and removable media on the desktop
 set_default $F com.apple.finder ShowExternalHardDrivesOnDesktop bool true

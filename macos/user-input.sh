@@ -11,9 +11,9 @@ set_default NSGlobalDomain AppleKeyboardUIMode int 2
 # Disable press-and-hold for keys in favor of key repeat
 set_default NSGlobalDomain ApplePressAndHoldEnabled bool false
 
-# Set a blazingly fast keyboard repeat rate (faster than the UI allows)
-set_default NSGlobalDomain KeyRepeat int 1
-set_default NSGlobalDomain InitialKeyRepeat int 10
+# Set the fastest keyboard repeat rate and shortest delay the UI offers
+set_default NSGlobalDomain KeyRepeat int 2
+set_default NSGlobalDomain InitialKeyRepeat int 15
 
 # English UI with German formats (dates, numbers, currency, metric units)
 before=$COUNT_CHANGED
