@@ -7,7 +7,7 @@
 #   ./install.sh --dry-run       show what would change, change nothing
 #   ./install.sh --list          list the steps
 
-set -Eeuo pipefail
+set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export DOTFILES_DIR
@@ -55,7 +55,9 @@ if [ -x /opt/homebrew/bin/brew ]; then
 fi
 
 current_step=""
-trap '[ -n "$current_step" ] && error "step \"$current_step\" failed"' ERR
+# Report the failing step once, when set -e aborts the run
+# shellcheck disable=SC2154 # rc is assigned inside the trap
+trap 'rc=$?; if [ $rc -ne 0 ] && [ -n "$current_step" ]; then error "step \"$current_step\" failed (exit $rc)"; fi' EXIT
 
 [ "$DRY_RUN" = 1 ] && warn "dry-run: nothing will be changed"
 
