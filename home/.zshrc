@@ -30,7 +30,7 @@ fpath=("$HOMEBREW_PREFIX/share/zsh-completions" $fpath)
 plugins=(
   git gh
   kubectl kubectx helm
-  podman
+  docker
   azure
   composer npm
   macos vscode
