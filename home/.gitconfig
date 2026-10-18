@@ -1,0 +1,168 @@
+# ~/.gitconfig — linked from ~/.dotfiles/home/.gitconfig
+# Identity (user.name, user.email) lives in ~/.gitconfig.local,
+# per-folder identities in the includeIf files at the end.
+
+[color]
+  ui = true
+  interactive = always
+
+[color "interactive"]
+  error = red bold
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+
+[color "status"]
+  added = green bold
+  changed = yellow bold
+  untracked = red bold
+
+[alias]
+  # print alias list
+  alias = !git config --get-regexp '^alias\\.' | sed 's/^alias\\.//' | sort
+
+  # add
+  a = add                           # add
+  chunkyadd = add --patch           # stage commits chunk by chunk
+
+  # via http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
+  snapshot = !git stash save \"snapshot: $(date)\" && git stash apply \"stash@{0}\"
+  snapshots = !git stash list --grep snapshot
+
+  # branch
+  b = branch -v                     # branch (verbose)
+  br = branch
+
+  # commit
+  c = commit -m                     # commit with message
+  ca = commit -am                   # commit all with message
+  ci = commit                       # commit
+  amend = commit --amend            # amend your last commit
+  ammend = commit --amend           # amend your last commit
+
+  # checkout
+  co = checkout                     # checkout
+  nb = checkout -b                  # create and switch to a new branch (mnemonic: "git new branch branchname...")
+
+  # cherry-pick
+  cp = cherry-pick -x               # grab a change from a branch
+
+  # clone
+  cl = clone
+
+  # diff
+  d = diff                          # diff unstaged changes
+  dc = diff --cached                # diff staged changes
+  last = diff HEAD^                 # diff last committed change
+
+  # log
+  l = log --graph --date=short
+  ll = log --stat --abbrev-commit
+  changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+  short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+  changelog = log --pretty=format:\" * %s\"
+  shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
+  mylog = log --color-words --stat -5
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(yellow)<%an - %ae>%Creset' --abbrev-commit --date=relative
+  authors = shortlog -sne
+  filelog = log -u                  # show changes to a file
+
+  remerge = !git checkout $1 && git rebase master && git checkout master && git merge $1
+
+  # merge
+  m = merge --no-ff                 # no fast-forwarding
+  mf = merge --ff-only              # with fast-forwarding
+  mt = mergetool                    # fire up the merge tool
+
+  # pull / push
+  pl = pull                         # pull
+  ps = push                         # push
+
+  # rebase
+  rc = rebase --continue            # continue rebase
+  rs = rebase --skip                # skip rebase
+
+  # remote
+  r = remote -v                     # show remotes (verbose)
+
+  # reset
+  unstage = reset HEAD              # remove files from index (tracking)
+  uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
+
+  # stash
+  ss = stash                        # stash changes
+  sl = stash list                   # list stashes
+  sa = stash apply                  # apply stash (restore changes)
+  sd = stash drop                   # drop stashes (destroy changes)
+
+  # status
+  s = status                        # status
+  st = status                       # status
+  stat = status                     # status
+
+  # tag
+  t = tag -n                        # show tags with <n> lines of each tag message
+
+[format]
+  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
+
+[core]
+  autocrlf = input
+  editor = vim
+  trustctime = false
+  filemode = false
+  ignoreCase = false
+
+[init]
+  defaultBranch = main
+
+[fetch]
+  prune = true
+
+[pull]
+  rebase = true
+
+[push]
+  default = current
+  autoSetupRemote = true
+
+[merge]
+  summary = true
+  verbosity = 1
+  tool = vimdiff
+
+[apply]
+  whitespace = nowarn
+
+[diff]
+  # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
+  # instead of a/b/c/d as prefixes for patches
+  mnemonicprefix = true
+  algorithm = histogram
+
+[rerere]
+  # Remember my merges
+  enabled = true
+
+[advice]
+  statusHints = true
+
+[help]
+  # Ask before running a corrected command
+  autocorrect = prompt
+
+[include]
+  path = ~/.gitconfig.local
+
+# Own identity for DOPAmin repositories (file is not part of the repo)
+[includeIf "gitdir:~/Documents/business/DOPAmin/"]
+  path = ~/.gitconfig.dopamin

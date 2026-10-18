@@ -1,0 +1,32 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Layout of the former powerlevel9k prompt:
+#   left:  kubecontext · user@host (only remote/root) · dir · git   + newline
+#   right: status · duration · time
+add_newline = true
+
+format = """
+$kubernetes$username$hostname$directory$git_branch$git_state$git_status
+$character"""
+
+right_format = "$status$cmd_duration$time"
+
+[kubernetes]
+disabled = false
+format = '[⎈ $context( \($namespace\))]($style) '
+
+[directory]
+truncation_length = 2
+truncate_to_repo = false
+
+[status]
+disabled = false
+format = '[$symbol$status]($style) '
+
+[cmd_duration]
+min_time = 2_000
+format = '[$duration]($style) '
+
+[time]
+disabled = false
+format = '[$time]($style)'

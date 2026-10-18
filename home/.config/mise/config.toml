@@ -1,0 +1,5 @@
+# Global runtimes, linked to ~/.config/mise/config.toml
+# Per project versions go into a mise.toml in the project.
+[tools]
+node = "lts"
+python = "3"
