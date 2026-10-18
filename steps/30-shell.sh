@@ -26,6 +26,21 @@ link_file "$DOTFILES_DIR/home/.config/starship.toml" "$HOME/.config/starship.tom
 
 has starship || warn "starship not installed yet (packages step)"
 
+# Oh My Zsh refuses completions from group-writable dirs (Homebrew creates
+# $HOMEBREW_PREFIX/share with g+w for the admin group)
+if [ -n "${HOMEBREW_PREFIX:-}" ]; then
+  for dir in "$HOMEBREW_PREFIX/share" "$HOMEBREW_PREFIX/share/zsh" "$HOMEBREW_PREFIX/share/zsh/site-functions"; do
+    [ -d "$dir" ] || continue
+    if [ $(( 0$(stat -f %Lp "$dir") & 022 )) -eq 0 ]; then
+      unchanged "permissions $dir"
+    else
+      run chmod go-w "$dir"
+      changed "permissions $dir: removed group/other write"
+    fi
+  done
+  unset dir
+fi
+
 if [ "$(dscl . -read "$HOME" UserShell | awk '{print $2}')" = /bin/zsh ]; then
   unchanged "login shell /bin/zsh"
 else
