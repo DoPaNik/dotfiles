@@ -2,8 +2,9 @@
 # Provision a Mac from this repository. Safe to run repeatedly: every step
 # checks the current state first and only changes what differs.
 #
-#   ./install.sh                 run all steps
+#   ./install.sh                 run all provisioning steps
 #   ./install.sh shell git       run selected steps only
+#   ./install.sh update          upgrade packages, runtimes and Oh My Zsh
 #   ./install.sh --dry-run       show what would change, change nothing
 #   ./install.sh --list          list the steps
 
@@ -20,16 +21,19 @@ export DOTFILES_DIR
 . "$DOTFILES_DIR/lib/common.sh"
 
 ALL_STEPS="preflight homebrew packages shell git mise macos system"
+# Only run when named explicitly
+EXTRA_STEPS="update"
 
 usage() {
-  sed -n '2,9p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '2,10p' "$0" | sed 's/^# \{0,1\}//'
 }
 
 list_steps() {
   local s file desc
-  for s in $ALL_STEPS; do
+  for s in $ALL_STEPS $EXTRA_STEPS; do
     file=$(ls "$DOTFILES_DIR"/steps/*-"$s".sh)
     desc=$(sed -n '2s/^# //p' "$file")
+    case " $EXTRA_STEPS " in *" $s "*) desc="$desc (only when named)" ;; esac
     printf '  %-10s %s\n' "$s" "$desc"
   done
 }
@@ -42,7 +46,7 @@ while [ $# -gt 0 ]; do
     -h|--help) usage; exit 0 ;;
     -*) die "unknown option: $1" ;;
     *)
-      case " $ALL_STEPS " in
+      case " $ALL_STEPS $EXTRA_STEPS " in
         *" $1 "*) steps="$steps $1" ;;
         *) die "unknown step: $1 (see --list)" ;;
       esac ;;

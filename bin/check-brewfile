@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# Verify that every Brewfile entry still exists in Homebrew.
+# Missing or disabled entries fail, deprecated ones only warn.
+# Used by CI to notice renamed or removed formulae/casks early.
+
+set -euo pipefail
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+BREWFILE=Brewfile
+
+entries() { sed -n "s/^$1 '\([^']*\)'.*/\1/p" "$BREWFILE"; }
+
+# Third-party taps must be tapped and trusted before brew can read them
+for tap in $(entries tap); do
+  brew tap "$tap" >/dev/null
+  brew trust --tap "$tap" >/dev/null 2>&1 || true
+done
+
+# check KIND NAME...: one batch call, per-entry calls only to find a missing one
+check() {
+  local kind=$1 json name
+  shift
+  if ! json=$(brew info --json=v2 "--$kind" "$@" 2>/dev/null); then
+    local found=""
+    for name in "$@"; do
+      if brew info --json=v2 "--$kind" "$name" >/dev/null 2>&1; then
+        found="$found $name"
+      else
+        echo "ERROR   $kind $name: not found"
+      fi
+    done
+    # shellcheck disable=SC2086 # split the list of found names
+    json=$(brew info --json=v2 "--$kind" $found 2>/dev/null || true)
+  fi
+  [ -n "$json" ] || return 0
+  printf '%s' "$json" | jq -r '
+    (.formulae + .casks)[]
+    | (.token // .name) as $n
+    | if .disabled then "ERROR   \($n): disabled (\(.disable_reason // "no reason"))"
+      elif .deprecated then "WARNING \($n): deprecated (\(.deprecation_reason // "no reason"))"
+      else empty end'
+}
+
+# shellcheck disable=SC2046 # entry names contain no spaces
+out=$( { check formula $(entries brew); check cask $(entries cask); } )
+[ -n "$out" ] && printf '%s\n' "$out"
+rc=0
+case $out in *ERROR*) rc=1 ;; esac
+
+if [ "$rc" -eq 0 ]; then
+  echo "Brewfile OK: $(entries brew | wc -l | tr -d ' ') formulae, $(entries cask | wc -l | tr -d ' ') casks"
+fi
+exit "$rc"
