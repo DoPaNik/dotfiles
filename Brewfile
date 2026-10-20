@@ -29,7 +29,9 @@ brew 'pre-commit' # Git hook manager (see .pre-commit-config.yaml)
 brew 'shellcheck' # Static analysis for shell scripts
 
 # Container
-brew 'podman' # Daemonless container engine for developing, managing, and running OCI Containers
+brew 'colima' # Docker engine in a lightweight VM (runtime for ddev), start with `colima start`
+brew 'docker' # Docker CLI, talks to Colima
+brew 'docker-buildx' # Docker CLI plugin for builds (used by ddev)
 brew 'dive' # Exploring each layer in an image
 
 # Kubernetes

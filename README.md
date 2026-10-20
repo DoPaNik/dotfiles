@@ -64,3 +64,24 @@ Brewfile          packages, apps and fonts
   the new fonts only take effect then
 - iTerm2: set the font to *Hack Nerd Font Mono*
 - Machine specific shell settings go into `~/.zshrc.local`
+
+### Docker runtime for ddev (once)
+
+ddev runs on [Colima](https://github.com/abiosoft/colima) (Docker engine in a
+VM) with the Homebrew `docker` CLI. Projects must live below `$HOME`.
+
+```bash
+# Let the Docker CLI find the Homebrew buildx plugin
+mkdir -p ~/.docker && echo '{"cliPluginsExtraDirs": ["/opt/homebrew/lib/docker/cli-plugins"]}' > ~/.docker/config.json
+
+# Create and start the VM (settings recommended by ddev), creates the "colima" docker context
+colima start --cpu 4 --memory 6 --disk 100 --vm-type=vz --mount-type=virtiofs --dns=1.1.1.1
+
+# No usage statistics to the ddev developers
+ddev config global --instrumentation-opt-in=false
+
+# Trust ddev's local HTTPS certificates (asks for your password)
+mkcert -install
+```
+
+After a reboot run `colima start` again.
