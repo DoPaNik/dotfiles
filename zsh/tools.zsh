@@ -7,6 +7,9 @@ path=("$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin" $path)
 # Kubernetes plugins installed with krew
 path=("${KREW_ROOT:-$HOME/.krew}/bin" $path)
 
+# LM Studio CLI (lms), set up by LM Studio itself
+[ -d "$HOME/.lmstudio/bin" ] && path+=("$HOME/.lmstudio/bin")
+
 typeset -U path
 
 # Colorize Man pages
