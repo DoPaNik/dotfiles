@@ -27,6 +27,7 @@ cd ~/Documents/Github/dotfiles
 | `shell` | Oh My Zsh, links `~/.zshrc`, `~/.zprofile`, `~/.config/starship.toml`, `~/.dotfiles` |
 | `git` | links `~/.gitconfig` and the global ignore file |
 | `mise` | links `~/.config/mise/config.toml`, installs Python and Node.js |
+| `ai-buddy` | clones [ai-buddy](https://github.com/DoPaNik/ai-buddy) if missing, builds and installs it to `~/Applications` when the installed app is from another commit (needs Xcode) |
 | `macos` | user settings from `macos/user-*.sh`, restarts only changed apps |
 | `system` | system settings from `macos/system.sh` (sudo) |
 | `update` | `brew upgrade`, `mise upgrade`, Oh My Zsh update; only runs when named |
@@ -64,6 +65,9 @@ Brewfile          packages, apps and fonts
   the new fonts only take effect then
 - iTerm2: set the font to *Hack Nerd Font Mono*
 - Machine specific shell settings go into `~/.zshrc.local`
+- Xcode: install it from the App Store and open it once, then run
+  `./install.sh ai-buddy`. In AI Buddy (glasses icon in the menu bar) turn on
+  *Beim Login starten* and set up the Claude status line.
 
 ### Docker runtime for ddev (once)
 
