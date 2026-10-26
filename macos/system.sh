@@ -45,6 +45,25 @@ else
   warn "could not enable restart after freeze (Terminal may need Full Disk Access)"
 fi
 
+# SMB client (see `man nsmb.conf`), installed from macos/nsmb.conf:
+#   signing_required=no   do not require signing (faster NAS transfers)
+#   protocol_vers_map=6   SMB2 + SMB3 only, SMB1 disabled
+#   streams=yes           allow alternate data streams (default)
+# Takes effect for new connections, so reconnect mounted shares.
+NSMB_SRC="$DOTFILES_DIR/macos/nsmb.conf"
+if cmp -s "$NSMB_SRC" /etc/nsmb.conf; then
+  unchanged "/etc/nsmb.conf"
+else
+  if [ -e /etc/nsmb.conf ]; then
+    run mkdir -p "$BACKUP_DIR/etc"
+    run cp /etc/nsmb.conf "$BACKUP_DIR/etc/nsmb.conf"
+    info "backup: /etc/nsmb.conf -> $BACKUP_DIR/etc/nsmb.conf"
+  fi
+  run sudo install -m 644 -o root -g wheel "$NSMB_SRC" /etc/nsmb.conf
+  changed "/etc/nsmb.conf (reconnect SMB shares to apply)"
+fi
+unset NSMB_SRC
+
 # Show the /Volumes folder
 if stat -f %Sf /Volumes | grep -q hidden; then
   run sudo chflags nohidden /Volumes
@@ -59,7 +78,14 @@ fi
 
 SU=/Library/Preferences/com.apple.SoftwareUpdate
 # Check, download and install security updates and system data files
-set_default --sudo $SU AutomaticCheckEnabled bool true
+# The update daemon rewrites its plist and may drop AutomaticCheckEnabled,
+# so check and set the schedule through softwareupdate instead
+if softwareupdate --schedule 2>/dev/null | grep -q 'turned on'; then
+  unchanged "automatic update check"
+else
+  run sudo softwareupdate --schedule on >/dev/null
+  changed "automatic update check -> on"
+fi
 set_default --sudo $SU AutomaticDownload bool true
 set_default --sudo $SU CriticalUpdateInstall bool true
 set_default --sudo $SU ConfigDataInstall bool true
