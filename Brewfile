@@ -48,6 +48,9 @@ brew 'php'
 brew 'composer' # Dependency manager for PHP
 brew 'ddev/ddev/ddev' # A local PHP development environment system
 
+# macOS app development
+brew 'xcodegen' # Generates Xcode projects from project.yml (used by ai-buddy)
+
 # Azure
 cask 'azure-cli'
 

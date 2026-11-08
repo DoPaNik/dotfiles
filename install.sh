@@ -20,7 +20,7 @@ export DOTFILES_DIR
 # shellcheck source=lib/common.sh
 . "$DOTFILES_DIR/lib/common.sh"
 
-ALL_STEPS="preflight homebrew packages shell git mise macos system"
+ALL_STEPS="preflight homebrew packages shell git mise ai-buddy macos system"
 # Only run when named explicitly
 EXTRA_STEPS="update"
 
