@@ -10,6 +10,10 @@ path=("${KREW_ROOT:-$HOME/.krew}/bin" $path)
 # LM Studio CLI (lms), set up by LM Studio itself
 [ -d "$HOME/.lmstudio/bin" ] && path+=("$HOME/.lmstudio/bin")
 
+# User tools from vendor installers (e.g. Herdr: hc, herdr-app).
+# Appended so they never shadow Homebrew commands.
+[ -d "$HOME/.local/bin" ] && path+=("$HOME/.local/bin")
+
 typeset -U path
 
 # Colorize Man pages
